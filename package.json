@@ -12,6 +12,9 @@
     "test": "jest"
   },
   "dependencies": {
+    "@nuxtjs/apollo": "^4.0.1-rc.1",
+    "@nuxtjs/axios": "^5.11.0",
+    "graphql-tag": "^2.10.3",
     "nuxt": "^2.0.0"
   },
   "devDependencies": {

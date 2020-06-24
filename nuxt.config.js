@@ -35,11 +35,20 @@ export default {
   buildModules: [
     // Doc: https://github.com/nuxt-community/nuxt-tailwindcss
     '@nuxtjs/tailwindcss',
+    '@nuxtjs/apollo'
   ],
+  apollo:{
+     clientConfigs:{
+          default:{
+            httpEndpoint:'https://rickandmortyapi.com/graphql/'
+          }
+     }
+  },
   /*
   ** Nuxt.js modules
   */
   modules: [
+    '@nuxtjs/axios'
   ],
   /*
   ** Build configuration
