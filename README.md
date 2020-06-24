@@ -1,6 +1,3 @@
-# nuxt-apollo
-
-> My fine Nuxt.js project
 
 ## Build Setup
 
