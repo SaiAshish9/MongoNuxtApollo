@@ -1,12 +1,19 @@
 <template>
-  <div class="container bg-blue">
+  <div class="container bg-blue mx-10 p-10">
     <h1 class="text-4xl font-semibold text-gray-800">
       Nuxt Apollo
     </h1>
 
+    <nuxt-link
+      to="create"
+      class="bg-purple-700 p-2 text-white font-semibold m-2"
+    >
+      Create Character
+    </nuxt-link>
+
     <div class="flex">
       <ul class="w-64 px-2 text-gray-600">
-        <li v-for="character in characters.results" :key="character.id">
+        <li v-for="character in characters" :key="character.id">
           <nuxt-link
             :to="character.id"
             class="hover:font-bold hover:text-gray-900 leading-loose"
@@ -26,27 +33,24 @@
 import gql from "graphql-tag";
 
 export default {
-  data() {
-    return {
-      characterId: 1
-    };
+
+  fetch({ redirect, route }) {
+    if (!route.params.id) redirect("/1");
   },
-  fetch({redirect,route}){
-    if(!route.params.id)
-     redirect('/1')
-  }, 
-  apollo: {
-    characters: gql`
+  async asyncData({app,redirect}){
+    // server
+  const result = await app.apolloProvider.defaultClient.query({
+     query:gql`
       query getCharacters {
         characters {
-          results {
-            id
-            name
-            status
-          }
+          id
+          name
         }
       }
     `
+  })
+  redirect('/'+result.data.characters[0].id)
+  return result.data
   }
 };
 </script>

@@ -15,7 +15,7 @@
         {{ character.gender }}
       </h1>
       <h1>
-        {{ character.origin.name }}
+        <!-- {{ character.origin.name }} -->
       </h1>
     </div>
   </div>
@@ -29,17 +29,13 @@ export default {
   apollo: {
     character: {
       query: gql`
-        query getCharacter($id: ID) {
+        query getCharacter($id: ID!) {
           character(id: $id) {
             id
             name
-            species
             gender
             image
             status
-            origin {
-              name
-            }
           }
         }
       `,
